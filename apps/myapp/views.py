@@ -60,7 +60,7 @@ def show(request, item_id):
         'item': item,
         'joined': joined
     }
-    return render(request, 'myapp/dashboard.html', context)
+    return render(request, 'myapp/show.html', context)
 
 def add(request):
     if 'user_id' not in request.session:

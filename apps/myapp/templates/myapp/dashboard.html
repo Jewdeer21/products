@@ -70,10 +70,10 @@
                             <tbody>
                                 {% for notJoin in notJoined %}
                                     <tr>
-                                        <td><a href="/wishlist/items/{{notJoin.id}}">{{notJoin.item}}</a></td>
+                                        <td><a href="/dashboard/items/{{items.id}}">{{notJoin.item}}</a></td>
                                         <td>{{notJoin.planner.name}}</td>
                                         <td>{{notJoin.created_at}}</td>
-                                        <td><a href="/join/{{notJoin.id}}">Add to My Wishlist</a></td>
+                                        <td><a href="/join/{{notJoin.id}}">Add to My Wishlist</a></a></td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

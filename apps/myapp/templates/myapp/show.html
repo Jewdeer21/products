@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Item</title>
+    <title>Destination</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style>
         .card-body, h3 {
@@ -18,7 +18,7 @@
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="/dashboard">{{wishlisht.item}}</a>
+        <a class="navbar-brand" href="/dashboard"> Wishlist </a>
         <span> 
             <a href="/dashboard"><button class="btn btn-outline-light my-2 my-sm-0">Home</button></a>
             <a href="/logout"><button class="btn btn-outline-light my-2 my-sm-0">Logout</button></a>
@@ -32,7 +32,7 @@
                         Info:
                     </div>
                     <div class="card-body info">
-                        <h3>Planned By: {{item.planner.name}}</h3>
+                        <h1>Item: {{item.item}}</h1>
                     </div>
                 </div>
             </div>
@@ -41,11 +41,11 @@
             <div class="col col-lg-12">
                 <div class="card text-left">
                     <div class="card-header">
-                        Users who added this product under their wishlist:
+                        Users wo added this product/item under their wish list:
                     </div>
                     <div class="card-body">
                         {% for joiner in joined %}
-                            <h3>{{joiner.name}}</h3>
+                            {{joiner.name}}
                         {% endfor %}
                     </div>
                 </div>
