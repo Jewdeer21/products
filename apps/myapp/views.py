@@ -40,7 +40,7 @@ def dashboard(request):
         return redirect('/')
     else: 
         user = User.objects.get(id=request.session['user_id'])
-        items = Wishlist.objects.all()
+        items = Item.objects.all()
         myItems = user.adds.all()
         notJoined = items.difference(myItems)
                 
@@ -54,8 +54,8 @@ def dashboard(request):
         return render(request, 'myapp/dashboard.html', context)
 
 def show(request, item_id):
-    item = Wishlist.objects.get(id=item_id)
-    joined = item.joins.all()
+    item = Item.objects.get(id=item_id)
+    joined = item.adds.all()
     context = {
         'item': item,
         'joined': joined
@@ -73,7 +73,7 @@ def add(request):
         return render(request, 'myapp/create.html', context)
 
 def create(request):
-    errors = Wishlist.objects.wishlist_validator(request)
+    errors = Item.objects.item_validator(request)
 
     if len(errors) < 1:
         return redirect('/dashboard')
@@ -84,13 +84,13 @@ def create(request):
 
 def join(request, item_id):
     user = User.objects.get(id=request.session['user_id'])
-    item = Wishlist.objects.get(id=item_id)
+    item = Item.objects.get(id=item_id)
     user.adds.add(item)
     return redirect('/dashboard')
 
 def leave(request, item_id):
     user = User.objects.get(id=request.session['user_id'])
-    item = Wishlist.objects.get(id=item_id)
+    item = Item.objects.get(id=item_id)
     user.adds.remove(item)
     return redirect('/dashboard')
 

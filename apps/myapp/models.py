@@ -43,15 +43,15 @@ class Userobjects(models.Manager):
                 request.session['user_id'] = user.id
         return errors
 
-class Wishlistobjects(models.Manager):
-    def wishlist_validator(self, request):
+class Itemobjects(models.Manager):
+    def item_validator(self, request):
         errors = {}
         if len(request.POST['item']) < 1:
             errors['item'] = "item title needs to be at least 1 characters long"
-        if len(errors) > 1:
-                items = wishlist.objects.create(item=request.POST['item'], created_on=request.POST['date'], planner_id=request.session['user_id'])
+        if len(errors) < 1:
+                items = Item.objects.create(item=request.POST['item'], planner_id=request.session['user_id'])
                 user = User.objects.get(id=request.session['user_id'])
-                user.joins.add(items)
+                user.adds.add(items)
         return errors
 
 class User(models.Model):
@@ -64,13 +64,11 @@ class User(models.Model):
     objects = Userobjects()
 
 
-class Wishlist(models.Model):
+class Item(models.Model):
     item = models.CharField(max_length=255)
-    description = models.CharField(max_length=4)
-    created_on = models.DateField()
     planner = models.ForeignKey(User, related_name="items", on_delete=models.CASCADE)
     adds = models.ManyToManyField(User, related_name="adds")
     created_at= models.DateTimeField(auto_now_add=True)
     updated_at= models.DateTimeField(auto_now=True)
 
-    objects = Wishlistobjects()
+    objects = Itemobjects()

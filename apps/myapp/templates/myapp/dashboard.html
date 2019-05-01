@@ -37,11 +37,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for item in myItems %}
+                                {% for items in myItems %}
                                     <tr>
-                                        <td><a href="/dashboard/items/{{item.id}}">{{items.item}}</a></td>
-                                        <td>{{items.date}}</td>
-                                        <td>{{planner.name}}</td>
+                                        <td><a href="/dashboard/items/{{items.id}}">{{items.item}}</a></td>
+                                        <td>{{items.planner.name}}</td>
+                                        <td>{{items.created_at}}</td>
                                         <td><a href="/leave/{{items.id}}">Remove From My Wishlist</a></td>
                                     </tr>
                                 {% endfor %}
@@ -72,7 +72,7 @@
                                     <tr>
                                         <td><a href="/wishlist/items/{{notJoin.id}}">{{notJoin.item}}</a></td>
                                         <td>{{notJoin.planner.name}}</td>
-                                        <td>{{notJoin.date}}</td>
+                                        <td>{{notJoin.created_at}}</td>
                                         <td><a href="/join/{{notJoin.id}}">Add to My Wishlist</a></td>
                                     </tr>
                                 {% endfor %}
