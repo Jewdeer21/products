@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Wishlist Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .card {
+            margin: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="/dashboard"> Hello,{{user.name}}!</a>
+        <a href="/logout"><button class="btn btn-outline-light my-2 my-sm-0" href="/logout">Logout</button></a>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col col-lg-12">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Your Wishlist
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Added By</th>
+                                    <th>Date Added</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in myItems %}
+                                    <tr>
+                                        <td><a href="/dashboard/items/{{item.id}}">{{items.item}}</a></td>
+                                        <td>{{items.date}}</td>
+                                        <td>{{planner.name}}</td>
+                                        <td><a href="/leave/{{items.id}}">Remove From My Wishlist</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-lg-12">
+                <div class="card text-center">
+                    <div class="card-header">
+                        Other Wishlists
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Added By</th>
+                                    <th>Date Added</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for notJoin in notJoined %}
+                                    <tr>
+                                        <td><a href="/wishlist/items/{{notJoin.id}}">{{notJoin.item}}</a></td>
+                                        <td>{{notJoin.planner.name}}</td>
+                                        <td>{{notJoin.date}}</td>
+                                        <td><a href="/join/{{notJoin.id}}">Add to My Wishlist</a></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <a href="/items/add">Add Wishlist Item</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
